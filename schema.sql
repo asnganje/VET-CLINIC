@@ -6,6 +6,8 @@ CREATE TABLE animals (
     date_of_birth DATE,
     escape_attempts INT,
     neutered BOOLEAN,
-    weight_kg DECIMAL,
-    species VARCHAR(200)
+    weight_kg DECIMAL
 );
+
+/* Populate database with sample data. */
+ALTER TABLE animals ADD COLUMN species VARCHAR(200);
