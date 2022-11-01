@@ -34,3 +34,28 @@ ALTER TABLE animals  ADD COLUMN owner_id INT;
 ALTER TABLE animals ADD FOREIGN KEY (owner_id)  REFERENCES owners(id); 
 
 
+CREATE TABLE vets (
+    id BIGSERIAL NOT NULL PRIMARY KEY,
+    name VARCHAR(50),
+    age INT,
+    date_of_graduation DATE
+);
+
+CREATE TABLE specialization (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    vet_id INT,
+    species_id INT,
+    FOREIGN KEY (vet_id) REFERENCES vets(id),
+    FOREIGN KEY (species_id) REFERENCES  species(id),
+    PRIMARY KEY (id)
+);
+
+CREATE TABLE visits (
+    id INT GENERATED ALWAYS AS IDENTITY,
+    animals_id INT,
+    vets_id INT,   	
+    date_of_visit VARCHAR(50),
+    FOREIGN KEY (animals_id) REFERENCES  animals(id),
+    FOREIGN KEY (vets_id) REFERENCES vets(id),
+    PRIMARY KEY (id)
+);
